@@ -46,7 +46,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await axios.post(
-        "https://agriculture-traceability.vercel.app/api/v1/auth/register",
+        "http://localhost:5000/api/v1/auth/register",
         {
           first_name: formValue.first_name,
           last_name: formValue.last_name,

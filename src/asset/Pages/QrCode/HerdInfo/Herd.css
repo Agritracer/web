@@ -1,0 +1,335 @@
+/* Reset and base */
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+    background-color: #f8fafc;
+    color: #0f172a;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+/* Container for content */
+.container {
+    max-width: 1100px;
+    margin: 2rem auto 4rem;
+    padding: 0 1rem;
+}
+
+/* Title area */
+header {
+    margin-bottom: 1rem;
+}
+
+header h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.25rem;
+    line-height: 1.2;
+}
+
+header p {
+    margin: 0;
+    color: #475569;
+    font-weight: 400;
+    font-size: 0.95rem;
+}
+
+/* Main grid with 2 columns for desktop */
+.main-content {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+}
+
+/* Left side - images */
+.images {
+    flex: 0 0 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.main-image {
+    border-radius: 12px;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    box-shadow: 0 3px 6px rgb(0 0 0 / 0.10);
+}
+
+/* Overlay small dots for slideshow representational style */
+.dots {
+    position: absolute;
+    bottom: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.dots span {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255 255 255 / 0.6);
+    cursor: pointer;
+}
+
+.dots span.active {
+    background: white;
+    box-shadow: 0 0 4px #3339;
+}
+
+/* Thumbnail images container */
+.thumbnails {
+    display: flex;
+    gap: 0.7rem;
+    justify-content: start;
+}
+
+.thumbnail {
+    flex: 1 1 0;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    cursor: pointer;
+    aspect-ratio: 1 / 1;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.1);
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.thumbnail.selected {
+    border-color: #14b8a6; /* teal-400 */
+    box-shadow: 0 0 8px #14b8a660;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Right side - info panel */
+.info {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+/* Info box general style */
+.info-box {
+    background-color: white;
+    border-radius: 12px;
+    padding: 1.25rem 2rem 1.5rem;
+    box-shadow: 0 3px 8px rgb(0 0 0 / 0.05);
+    color: #1e293b;
+}
+
+/* Box titles */
+.info-box h2 {
+    margin: 0 0 0.8rem;
+    font-size: 1.125rem;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #134e4a; /* teal-900 */
+}
+
+/* Icons for h2 */
+.icon-building, .icon-sheep, .icon-location, .icon-calendar, .icon-people, .icon-ribbon, .icon-cert {
+    display: inline-block;
+    fill: #134e4a;
+    stroke: none;
+    width: 20px;
+    height: 20px;
+    flex-shrink: 0;
+}
+
+/* Top info area with 3 boxes side by side */
+.top-info {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Each small info card */
+.small-info-card {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 1rem 1.2rem;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.06);
+    cursor: default;
+}
+
+/* Icons for small cards */
+.small-info-icon {
+    stroke-width: 1.5;
+    flex-shrink: 0;
+    width: 18px;
+    height: 18px;
+}
+
+/* Different background colors and icon colors for each card */
+.small-info-people {
+    background-color: #dcfce7; /* green-100 */
+    color: #15803d; /* green-700 */
+}
+
+.small-info-people .small-info-icon {
+    stroke: #15803d;
+}
+
+.small-info-ribbon {
+    background-color: #e0e7ff; /* blue-100 */
+    color: #3730a3; /* blue-800 */
+}
+
+.small-info-ribbon .small-info-icon {
+    stroke: #3730a3;
+    fill: none;
+}
+
+.small-info-calendar {
+    background-color: #fef9c3; /* yellow-100 */
+    color: #a16207; /* yellow-800 */
+}
+
+.small-info-calendar .small-info-icon {
+    stroke: #a16207;
+}
+
+/* Location text under top cards */
+.location {
+    margin-top: 1rem;
+    font-size: 0.9rem;
+    color: #334155;
+    display: flex;
+    gap: 0.35rem;
+    align-items: center;
+    font-weight: 500;
+}
+
+.location svg {
+    width: 15px;
+    height: 15px;
+    stroke: #64748b; /* gray-500 */
+    flex-shrink: 0;
+}
+
+.location span {
+    font-weight: 400;
+    font-size: 0.9rem;
+    color: #475569;
+}
+
+/* Paragraph content */
+.info-box p {
+    margin-top: 1rem;
+    line-height: 1.5;
+    color: #334155;
+    font-size: 0.95rem;
+    font-weight: 400;
+}
+
+/* Farm contact and certification section */
+.farm-contact {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 0.4rem;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 400;
+    flex-wrap: wrap;
+}
+
+.farm-contact svg {
+    stroke: #94a3b8;
+    width: 17px;
+    height: 17px;
+    flex-shrink: 0;
+}
+
+.farm-contact > div, .farm-contact > span {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+/* Certification badges container */
+.certifications {
+    margin-top: 1rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+/* Certification badge style */
+.cert-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    font-size: 0.85rem;
+    background-color: #d1fae5; /* green-100 */
+    padding: 0.35rem 0.9rem;
+    border-radius: 9999px;
+    font-weight: 600;
+    color: #065f46; /* green-800 */
+    cursor: default;
+    user-select: none;
+    box-shadow: 0 1px 3px rgb(0 0 0 / 0.12);
+}
+
+.cert-badge svg {
+    width: 16px;
+    height: 16px;
+    stroke: #065f46;
+    flex-shrink: 0;
+}
+
+/* Responsive - stack images and info on smaller */
+@media (max-width: 810px) {
+    .main-content {
+        flex-direction: column;
+    }
+
+    .images {
+        flex: 1 0 auto;
+        order: 1;
+        margin-bottom: 1rem;
+        max-width: 100%;
+    }
+
+    .info {
+        order: 2;
+    }
+
+    .top-info {
+        flex-direction: column;
+    }
+
+    .small-info-card {
+        width: 100%;
+    }
+
+    .thumbnails {
+        justify-content: center;
+    }
+}

@@ -16,6 +16,7 @@ import {
 } from "../../service/productPatchs_data.js";
 import { AuthContext } from "../../service/user_service.js";
 const emptyProduct = {
+  UseID: JSON.parse(localStorage.getItem("user")),
   name: "",
   price: "",
   net_weight: "",
