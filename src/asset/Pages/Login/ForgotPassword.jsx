@@ -14,7 +14,7 @@ const ForgotPasswordPage = () => {
     setLoading(true);
     try {
       const res = await axios.post(
-        "http://localhost:5000/api/v1/auth/login",//agriculture-traceability.vercel.app/
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/login`,//agriculture-traceability.vercel.app/
         { email, password }
       );
       console.log(res.data.user);

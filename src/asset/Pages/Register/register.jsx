@@ -46,7 +46,7 @@ export default function RegisterPage() {
     setLoading(true);
     try {
       await axios.post(
-        "http://localhost:5000/api/v1/auth/register",
+        `${process.env.REACT_APP_API_URL}/api/v1/auth/register`,
         {
           first_name: formValue.first_name,
           last_name: formValue.last_name,

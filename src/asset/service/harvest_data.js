@@ -3,7 +3,7 @@ import axios from "axios";
 export const handleGet = async (name, token) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/v1/harvests?sort=${name}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/harvests?sort=${name}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -19,7 +19,7 @@ export const handleGet = async (name, token) => {
 export const handleGetHerdHarvest = async (_idherdhavest, token) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/v1/harvests/herd/${_idherdhavest}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/harvests/herd/${_idherdhavest}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -34,7 +34,7 @@ export const handleGetHerdHarvest = async (_idherdhavest, token) => {
 export const handleGetHerdHarvest1 = async (_idherdhavest, token) => {
   try {
     const response = await axios.get(
-      `http://localhost:5000/api/v1/harvests/herd/${_idherdhavest}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/harvests/herd/${_idherdhavest}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -47,7 +47,7 @@ export const handleGetHerdHarvest1 = async (_idherdhavest, token) => {
   }
 };
 export const handleCreate = async (data, token) => {
-  const res = await axios.post("http://localhost:5000/api/v1/harvests", data, {
+  const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/harvests`, data, {
     headers: {
       Authorization: `Bearer ${token}`,
     },
@@ -57,7 +57,7 @@ export const handleCreate = async (data, token) => {
 
 export const handleDelete = async (_id, token) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/harvests/${_id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/harvests/${_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -70,7 +70,7 @@ export const handleDelete = async (_id, token) => {
 export const handleUpdate = async (_id, data, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:5000/api/v1/harvests/${_id}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/harvests/${_id}`,
       data,
       {
         headers: {
@@ -85,7 +85,7 @@ export const handleUpdate = async (_id, data, token) => {
 };
 export const getHerd = async () => {
   try {
-    const res = await axios.get(`http://localhost:5000/api/v1/herds?limit=60`);
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/herds?limit=60`);
     return res;
   } catch (error) {
     console.log(error);

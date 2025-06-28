@@ -1,5 +1,5 @@
 import axios from "axios";
-export const urlGet = "http://localhost:5000/api/v1/categories?limit=60";
+export const urlGet = `${process.env.REACT_APP_API_URL}/api/v1/categories?limit=60`;
 
 export const handleGet = async (
   token,
@@ -9,7 +9,7 @@ export const handleGet = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/v1/categories?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
+      `${process.env.REACT_APP_API_URL}/api/v1/categories?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
         value
       )}`,
       {
@@ -28,7 +28,7 @@ export const handleGet = async (
 export const handleCreate = async (data, token) => {
   try {
     const res = await axios.post(
-      "http://localhost:5000/api/v1/categories",
+      `${process.env.REACT_APP_API_URL}/api/v1/categories`,
       data,
       {
         headers: {
@@ -44,7 +44,7 @@ export const handleCreate = async (data, token) => {
 
 export const handleDelete = async (_id, token) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/categories/${_id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/categories/${_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -57,7 +57,7 @@ export const handleDelete = async (_id, token) => {
 export const handleUpdate = async (_id, data, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:5000/api/v1/categories/${_id}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/categories/${_id}`,
       data,
       {
         headers: {

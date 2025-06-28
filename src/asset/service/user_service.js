@@ -13,7 +13,7 @@ export const AuthContexProvider = ({ children }) => {
 
   const loginApi = async (inputs) => {
     const res = await axios.post(
-      "http://localhost:5000/api/v1/auth/login",
+      `${process.env.REACT_APP_API_URL}/api/v1/auth/login`,
       inputs
     );
     const user = res.data.user;
@@ -27,7 +27,7 @@ export const AuthContexProvider = ({ children }) => {
     return res;
   };
   const logout = async (token) => {
-    //   await axios.get("http://localhost:5000/api/v1/auth/logout",{
+    //   await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/auth/logout`,{
     //     headers: {
     //       Authorization: `Bearer ${token}`
     //   }
