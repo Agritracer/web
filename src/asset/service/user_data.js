@@ -2,7 +2,7 @@ import axios from "axios";
 
 export const getuserList = async (token) => {
     try {
-        const res = await axios.get("http://localhost:5000/api/v1/users?limit=50", {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users?limit=50`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -17,7 +17,7 @@ export const getuserList = async (token) => {
 
 export const createUserList = async (data, token) => {
     try {
-        const res = await axios.post("http://localhost:5000/api/v1/users", data, {
+        const res = await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/users`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -30,7 +30,7 @@ export const createUserList = async (data, token) => {
 };
 export const handleDelete = async (_id, token) => {
     try {
-        const res = await axios.delete(`http://localhost:5000/api/v1/users/${_id}`, {
+        const res = await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/users/${_id}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -43,7 +43,7 @@ export const handleDelete = async (_id, token) => {
 };
 export const getUser = async (userId, token) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/v1/users/${userId}`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users/${userId}`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -56,7 +56,7 @@ export const getUser = async (userId, token) => {
 
 export const getUserAdmin = async (token) => {
     try {
-        const res = await axios.get(`http://localhost:5000/api/v1/users/my-profile`, {
+        const res = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/users/my-profile`, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -68,7 +68,7 @@ export const getUserAdmin = async (token) => {
 };
 export const updateUserInfo = async (data, token) => {
     try {
-        const res = await axios.patch(`http://localhost:5000/api/v1/users/update-user`, data, {
+        const res = await axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/users/update-user`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -80,7 +80,7 @@ export const updateUserInfo = async (data, token) => {
 };
 export const changeUserPassword = async (data, token) => {
     try {
-        const res = await axios.patch(`http://localhost:5000/api/v1/users/change-password`, data, {
+        const res = await axios.patch(`${process.env.REACT_APP_API_URL}/api/v1/users/change-password`, data, {
             headers: {
                 Authorization: `Bearer ${token}`
             }
@@ -95,7 +95,7 @@ export const changeUserPassword = async (data, token) => {
 export const handleRole = async (userId, nameRole, token) => {
     try {
         const response = await axios.patch(
-            `http://localhost:5000/api/v1/users/${userId}`, {
+            `${process.env.REACT_APP_API_URL}/api/v1/users/${userId}`, {
                 role: nameRole,
             }, {
                 headers: {
@@ -112,7 +112,7 @@ export const handleRole = async (userId, nameRole, token) => {
 export const getActive = async (token) => {
     try {
         const response = await axios.get(
-            `http://localhost:5000/api/v1/auth/active-users`, {
+            `${process.env.REACT_APP_API_URL}/api/v1/auth/active-users`, {
                 headers: {
                     Authorization: `Bearer ${token}`
                 }

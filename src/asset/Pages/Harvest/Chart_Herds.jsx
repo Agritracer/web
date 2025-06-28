@@ -9,7 +9,7 @@ export default function StackedBarDemo() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await axios.get("http://localhost:5000/api/v1/harvests?limit=200");
+        const response = await axios.get("${process.env.REACT_APP_API_URL}/api/v1/harvests?limit=200");
         const harvests = response.data.harvests;
 
         const datasets = {};

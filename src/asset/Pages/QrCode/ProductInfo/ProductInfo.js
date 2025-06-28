@@ -1,10 +1,9 @@
-import React, { useState } from 'react';
 import './ProductInfo.css'; // nếu là file CSS
 
 
-export default function ProductInfo( {info} ) {
-    const data =JSON.stringify(info)
-    console.log(data)
+export default function ProductInfo({product, productInfo}) {
+
+    console.log(product)
     return (
         <div>
             <section className="product-detail" aria-label="Chi tiết sản phẩm sợi len cao cấp">
@@ -16,7 +15,8 @@ export default function ProductInfo( {info} ) {
                             alt="Bình và chai thủy tinh đầy sữa tươi trên bàn gỗ ngoài trời, nền cây xanh tự nhiên mờ"
                             id="main-image"
                         />
-                        <button className="arrow-btn right" aria-label="Ảnh tiếp theo" id="btn-next" type="button">❯</button>
+                        <button className="arrow-btn right" aria-label="Ảnh tiếp theo" id="btn-next" type="button">❯
+                        </button>
                     </div>
 
                     <div className="thumbnails" role="list" aria-label="Ảnh thu nhỏ sản phẩm">
@@ -55,7 +55,8 @@ export default function ProductInfo( {info} ) {
                             xmlns="http://www.w3.org/2000/svg"
                             viewBox="0 0 24 24"
                         >
-                            <path d="M21 7v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7m7-4v4m3 0H9m9 0a2 2 0 0 1 2 2m-2 6a2 2 0 0 1-2 2" />
+                            <path
+                                d="M21 7v10a4 4 0 0 1-4 4H7a4 4 0 0 1-4-4V7m7-4v4m3 0H9m9 0a2 2 0 0 1 2 2m-2 6a2 2 0 0 1-2 2"/>
                         </svg>
                         Chi tiết sản phẩm
                     </h2>
@@ -63,23 +64,22 @@ export default function ProductInfo( {info} ) {
                     <div className="product-info">
                         <div className="info-box weight">
                             <span className="label">Trọng lượng</span>
-                            {/*<span className="value">{product.net_weight}{product.unit}</span>*/}
+                            <span className="value">{product.net_weight} {product.unit}</span>
                         </div>
                         <div className="info-box price">
                             <span className="label">Giá</span>
-                            <span className="value">{data}</span>
+                            <span
+                                className="value">{product.price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ")} {product.currency_unit}</span>
                         </div>
                     </div>
 
-                    <p className="description">
-                        Sợi len chất lượng cao được sản xuất từ đàn cừu Romney truyền thống của chúng tôi. Được chế biến
-                        thủ công bằng phương pháp truyền thống để bảo tồn lanolin tự nhiên và tính toàn vẹn của sợi.
-                        Hoàn hảo cho các dự án đan len cao cấp.
-                    </p>
+                    <p className="description"> {productInfo.description} </p>
 
                     <h2 className="certifications">
-                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z" />
+                        <svg aria-hidden="true" focusable="false" xmlns="http://www.w3.org/2000/svg"
+                             viewBox="0 0 24 24">
+                            <path
+                                d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/>
                         </svg>
                         Chứng nhận & Chất lượng
                     </h2>

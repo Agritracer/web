@@ -12,16 +12,20 @@ export default function SizeDemo({idherd, herdname}) {
     const [input, setInput] = useState("");
     const [data, setData] = useState([]);
 
+   //  http://localhost:5000
+    const apiUrl = process.env.REACT_APP_API_URL;
+    console.log("API endpoint:", apiUrl);
+
     const searchQrCode = async (value) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/v1/qrcode/${value.input}` // Giả sử bạn muốn tìm kiếm theo mã QR
+            const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/qrcode/${value.input}` // Giả sử bạn muốn tìm kiếm theo mã QR
             );
             if (!response.ok) {
                 throw new Error(`Server trả về lỗi: ${response.status}`);
             }
             const result = await response.json();
             setData(result); // Giả sử dữ liệu trả về là một mảng
-
+            console.log(result);
         } catch (error) {
             console.error("Lỗi khi gửi dữ liệu:", error);
         }
@@ -54,12 +58,15 @@ export default function SizeDemo({idherd, herdname}) {
             </div>
         </div>
         <div className="card">
-            {data && <div>{data.product} </div>}
-            <ProductInfo info={data}/>
-            {/*{data.harvest && (<HerdInfo info={data?.harvest}/>)}*/}
-            {/*{data.cultivationLogs && (<CulivationLogs info={data?.culivationLogs}/>)}*/}
-            {/*{data.herd && (<HarvestInfo info={data?.product}/>)}*/}
-
+            {data.product ? (<>
+                    <ProductInfo product={data.product} productInfo={data.productInfo}/>
+                    <HerdInfo info={data.product}/>
+                    <CulivationLogs info={data?.product}/>
+                    <HarvestInfo info={data?.product}/>
+                </>
+            ) : (
+                <span>Không có dữ liệu.</span>
+            )}
         </div>
     </div>);
 }

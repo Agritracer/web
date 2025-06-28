@@ -10,7 +10,7 @@ export const handleGet = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/v1/herds?limit=${currentLimit}&page=${currentPage} &searchQuery=${encodeURIComponent(
+      `${process.env.REACT_APP_API_URL}/api/v1/herds?limit=${currentLimit}&page=${currentPage} &searchQuery=${encodeURIComponent(
         value
       )}`,
       {
@@ -33,7 +33,7 @@ export const handleGet = async (
 };
 export const handleCreate = async (data, token) => {
   try {
-    await axios.post("http://localhost:5000/api/v1/herds", data, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/herds`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -45,7 +45,7 @@ export const handleCreate = async (data, token) => {
 
 export const handleDelete = async (product, token) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/herds/${product._id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/herds/${product._id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -57,7 +57,7 @@ export const handleDelete = async (product, token) => {
 export const handleUpdate = async (_id, data, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:5000/api/v1/herds/${_id}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/herds/${_id}`,
       data,
       {
         headers: {
@@ -73,7 +73,7 @@ export const handleUpdate = async (_id, data, token) => {
 export const handleGetCategory = async (token) => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/categories?limit=50"
+      `${process.env.REACT_APP_API_URL}/api/v1/categories?limit=50`
     );
     return response.data.categories;
   } catch (error) {
@@ -84,7 +84,7 @@ export const handleGetCategory = async (token) => {
 export const handleGetFarm = async (token) => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/farms?limit=50&searchQuery=ạ",
+      `${process.env.REACT_APP_API_URL}/api/v1/farms?limit=50&searchQuery=ạ`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -106,7 +106,7 @@ export const handleGetRecords = async (
 ) => {
   try {
     const response = await fetch(
-      `http://localhost:5000/api/v1/herds/${herdId}?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
+      `${process.env.REACT_APP_API_URL}/api/v1/herds/${herdId}?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
         value
       )}`,
       {
@@ -128,7 +128,7 @@ export const handleGetRecords = async (
 export const fetchHerd = async (herdId, token) => {
   try {
     const res = await axios.get(
-      `http://localhost:5000/api/v1/herds/${herdId}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/herds/${herdId}`,
       {
         headers: {
           Authorization: `Bearer ${token}`,
@@ -143,7 +143,7 @@ export const fetchHerd = async (herdId, token) => {
 export const createNewAutoHerd = async (herdId, quantity, token) => {
   try {
     await axios.post(
-      `http://localhost:5000/api/v1/herds/${herdId}/generate-animals`,
+      `${process.env.REACT_APP_API_URL}/api/v1/herds/${herdId}/generate-animals`,
       {
         quantity: quantity,
         headers: {
@@ -158,7 +158,7 @@ export const createNewAutoHerd = async (herdId, quantity, token) => {
 
 export const handleCreateAnimal = async (data, token) => {
   try {
-    await axios.post("http://localhost:5000/api/v1/animals", data, {
+    await axios.post(`${process.env.REACT_APP_API_URL}/api/v1/animals`, data, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -170,7 +170,7 @@ export const handleCreateAnimal = async (data, token) => {
 
 export const handleDeleteAnimal = async (_id, token) => {
   try {
-    await axios.delete(`http://localhost:5000/api/v1/animals/${_id}`, {
+    await axios.delete(`${process.env.REACT_APP_API_URL}/api/v1/animals/${_id}`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },
@@ -182,7 +182,7 @@ export const handleDeleteAnimal = async (_id, token) => {
 export const handleUpdateAnimal = async (_id, data, token) => {
   try {
     const res = await axios.patch(
-      `http://localhost:5000/api/v1/animals/${_id}`,
+      `${process.env.REACT_APP_API_URL}/api/v1/animals/${_id}`,
       data,
       {
         headers: {
@@ -199,7 +199,7 @@ export const handleUpdateAnimal = async (_id, data, token) => {
 export const fetchNotifications = async (token) => {
   try {
     const response = await axios.get(
-      "http://localhost:5000/api/v1/notifications",
+      `${process.env.REACT_APP_API_URL}/api/v1/notifications`,
       {
         headers: {
           Authorization: `Bearer ${token}`,

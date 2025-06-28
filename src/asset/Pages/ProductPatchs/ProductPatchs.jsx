@@ -180,7 +180,7 @@ export default function SizeDemo() {
     const [expandedRows, setExpandedRows] = useState(null);
     const rowExpansionTemplate = (data) => {
         product._id = data._id;
-        var url = `http://localhost:5000/api/v1/processors/upload/${product._id}`;
+        var url = `${process.env.REACT_APP_API_URL}/api/v1/processors/upload/${product._id}`;
         return (
             <>
                 <TabView>
