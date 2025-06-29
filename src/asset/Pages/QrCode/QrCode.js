@@ -61,7 +61,7 @@ export default function SizeDemo({idherd, herdname}) {
         console.log("Kết quả từ QRScanner:", dataQrcode);
         setOpenQr(false);
         setInput(dataQrcode);
-        await searchQrCode(dataQrcode);
+        await searchQrCode({input:dataQrcode});
     };
 
     const closeQRCode = () => {
