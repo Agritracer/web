@@ -14,6 +14,7 @@ export default function SizeDemo({idherd, herdname}) {
     const [data, setData] = useState([]);
     const [isOpenQr, setOpenQr] = useState(false);
     const toast = useRef(null);
+    const [openEtherscan, setOpenEtherscan] = useState(false);
 
     const searchQrCode = async (value) => {
         try {
@@ -22,14 +23,17 @@ export default function SizeDemo({idherd, herdname}) {
             if (!response.ok) {
                 setData([])
                 notifyScannerQrcode("Server Error");
+
                 throw new Error(`Server trả về lỗi: ${response.status}`);
             }
             const result = await response.json();
             setData(result); // Giả sử dữ liệu trả về là một mảng
             console.log(result);
+            setOpenEtherscan(true);
             notifyScannerQrcode("Success");
 
         } catch (error) {
+            setOpenEtherscan(false);
             console.error("Lỗi khi gửi dữ liệu:", error);
             notifyScannerQrcode("Error");
         }
@@ -107,12 +111,14 @@ export default function SizeDemo({idherd, herdname}) {
                 >
                     Quét QRCode
                 </button>
-                <button
-                    className="p-button p-component"
-                    onClick={() => window.location.href = `https://sepolia.etherscan.io/tx/${data.tx_hashes}`}
-                >
-                    Etherscan
-                </button>
+                    {openEtherscan &&
+                    <button
+
+                        className="p-button p-component"
+                        onClick={() => window.location.href = `https://sepolia.etherscan.io/tx/${data.tx_hashes}`}
+                    >
+                        Etherscan
+                    </button>}
             </div>
         </div>
         <div className="card">
