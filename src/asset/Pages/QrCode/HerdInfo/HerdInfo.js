@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import './Herd.css'; // nếu là file CSS, còn nếu là component khác thì cần sửa lại tên cho đúng
+import './Herd.css';
 
-export default function HerdInfo({herd}) {
+export default function HerdInfo({farm,category,herd}) {
+    console.log(farm)
     return (
         <div>
-            <div className="container" role="main" aria-label="Thông tin Đàn cừu">
+            <div className="product-detail" role="main" aria-label="Thông tin Đàn cừu">
                 <header>
                     <h1>Thông tin Đàn cừu</h1>
 
@@ -13,7 +13,7 @@ export default function HerdInfo({herd}) {
                     <div className="images" aria-label="Ảnh Đàn cừu và trang trại">
                         <div className="main-image">
                             <img
-                                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/5b74d926-c182-4cf5-a8ab-d3717a23585e.png"
+                                src={herd.images[0].path}
                                 alt="Ảnh chụp cận cảnh chân người đang đi trên sân ngoài trời vào buổi hoàng hôn với ánh sáng ấm áp"
                             />
                             <div className="dots" aria-label="Trình chiếu ảnh tham khảo" role="list">
@@ -24,35 +24,22 @@ export default function HerdInfo({herd}) {
                         </div>
 
                         <div className="thumbnails" role="list" aria-label="Ảnh thu nhỏ lựa chọn">
-                            <div className="thumbnail selected" role="listitem" tabIndex="0"
-                                 aria-label="Ảnh thu nhỏ 1, hình chân người đang đi trên sân ngoài trời">
-                                <img
-                                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/3b169a98-ee24-47d0-918c-8eac38345fa9.png"
-                                    alt="Ảnh thu nhỏ chụp cận cảnh chân người đang đi trên sân ngoài trời"
-                                />
-                            </div>
+                            {herd.images.map((image, i) => (
+                                <div className="thumbnail selected" role="listitem" tabIndex="0"
+                                     aria-label="Ảnh thu nhỏ 1, hình chân người đang đi trên sân ngoài trời">
+                                    <img
+                                        src={image.path}
+                                        alt="Ảnh thu nhỏ chụp cận cảnh chân người đang đi trên sân ngoài trời"
+                                    />
+                                </div>
+                            ))}
 
-                            <div className="thumbnail" role="listitem" tabIndex="0"
-                                 aria-label="Ảnh thu nhỏ 2, hình người phụ nữ ngồi trên ghế bên tường với phông nền màu xanh">
-                                <img
-                                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/9920ba7d-0f6a-4413-840a-68c8b01a8404.png"
-                                    alt="Ảnh thu nhỏ người phụ nữ mặc trang phục thời trang ngồi trên ghế sô pha với nền xanh cổ điển"
-                                />
-                            </div>
-
-                            <div className="thumbnail" role="listitem" tabIndex="0"
-                                 aria-label="Ảnh thu nhỏ 3, khung cảnh nhà máy điện gió ngoài trời">
-                                <img
-                                    src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/26c554d4-a079-4d06-b05b-38990e55aa80.png"
-                                    alt="Ảnh thu nhỏ cảnh cánh quạt điện gió trên đồng bằng lúc bình minh với ánh sáng vàng ấm áp"
-                                />
-                            </div>
                         </div>
                     </div>
 
                     <aside className="info" aria-label="Thông tin chi tiết Đàn cừu và Trang trại">
                         <section className="info-box" aria-labelledby="breed-heading">
-                            <h2 id="breed-heading">Đàn Cừu Truyền thống Meadowbrook</h2>
+                            <h2 id="breed-heading">Đàn Cừu {herd.name} </h2>
 
                             <div className="top-info" role="group" aria-label="Thông tin nhanh về đàn cừu">
                                 <div className="small-info-card small-info-people" aria-label="Số lượng cừu">
@@ -65,7 +52,7 @@ export default function HerdInfo({herd}) {
                                     </svg>
                                     <div>
                                         <div style={{fontSize: '0.75rem', color: '#2d3748'}}>Số lượng</div>
-                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>127</div>
+                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>{herd.member_count}</div>
                                     </div>
                                 </div>
 
@@ -78,12 +65,12 @@ export default function HerdInfo({herd}) {
                                     </svg>
                                     <div>
                                         <div style={{fontSize: '0.75rem', color: '#2d3748'}}>Giống</div>
-                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>Romney</div>
+                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>{category.name}</div>
                                     </div>
                                 </div>
 
                                 <div className="small-info-card small-info-calendar"
-                                     aria-label="Thông tin thành lập năm 1998">
+                                     aria-label="Thông tin thành lập">
                                     <svg className="small-info-icon" xmlns="http://www.w3.org/2000/svg"
                                          viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                          strokeLinecap="round" strokeLinejoin="round">
@@ -93,8 +80,8 @@ export default function HerdInfo({herd}) {
                                         <line x1="3" y1="10" x2="21" y2="10"/>
                                     </svg>
                                     <div>
-                                        <div style={{fontSize: '0.75rem', color: '#2d3748'}}>Thành lập</div>
-                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>1998</div>
+                                        <div style={{fontSize: '0.75rem', color: '#2d3748'}}>vị trí</div>
+                                        <div style={{fontWeight: 700, fontSize: '1.05rem'}}>{herd.location}</div>
                                     </div>
                                 </div>
                             </div>
@@ -106,13 +93,11 @@ export default function HerdInfo({herd}) {
                                     <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0z"/>
                                     <circle cx="12" cy="10" r="3"/>
                                 </svg>
-                                <span>Rolling Hills, Canterbury, New Zealand</span>
+                                <span> - {farm.address}</span>
                             </div>
 
                             <p>
-                                Đàn cừu Romney truyền thống của chúng tôi đã được duy trì cẩn thận qua ba thế hệ.
-                                Những con cừu này nổi tiếng với chất lượng len tuyệt vời và bản tính cứng cáp, phát
-                                triển mạnh trong hệ thống đồng cỏ bền vững của chúng tôi.
+                                {category.description}
                             </p>
                         </section>
 
@@ -136,7 +121,17 @@ export default function HerdInfo({herd}) {
                                         <path d="M21 10c0 6-9 13-9 13S3 16 3 10a9 9 0 1 1 18 0Z"/>
                                         <circle cx="12" cy="10" r="3"/>
                                     </svg>
-                                    <span>142 Rolling Hills Road, Canterbury 7892, New Zealand</span>
+                                    <span>{farm.name} - {farm.address}</span>
+                                </div>
+                                <div style={{display: 'flex', alignItems: 'center', gap: '0.25rem'}}>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
+                                         strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"
+                                         viewBox="0 0 24 24" aria-hidden="true">
+                                        <path d="M22 16.92v3a2 2 0 0 1-2.18 2"/>
+                                        <path d="M16 12a4 4 0 0 1-8 0c0-1.71 2-4 4-4s4 2.29 4 4Z"/>
+                                        <path d="M2 17a16 16 0 0 0 7 3"/>
+                                    </svg>
+                                    <span>Diện tích: {farm.area}</span>
                                 </div>
                                 <div style={{display: 'flex', alignItems: 'center', gap: '0.25rem'}}>
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"
@@ -148,6 +143,7 @@ export default function HerdInfo({herd}) {
                                     </svg>
                                     <span>+64 3 456 7890 | info@meadowbrookfarm.co.nz</span>
                                 </div>
+
                             </div>
 
                             <strong>Chứng nhận Trang trại</strong>

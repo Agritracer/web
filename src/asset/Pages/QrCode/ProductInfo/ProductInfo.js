@@ -1,7 +1,7 @@
 import './ProductInfo.css'; // nếu là file CSS
 
 
-export default function ProductInfo({product, productInfo}) {
+export default function ProductInfo({product, productInfo, harvestFindOne}) {
 
     console.log(product)
     return (
@@ -9,35 +9,26 @@ export default function ProductInfo({product, productInfo}) {
             <section className="product-detail" aria-label="Chi tiết sản phẩm sợi len cao cấp">
                 <div className="gallery" aria-label="Bộ ảnh sản phẩm">
                     <div className="main-image-container">
-                        <button className="arrow-btn left" aria-label="Ảnh trước" id="btn-prev" type="button">❮</button>
+
                         <img
-                            src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/94625153-2efb-493e-bff2-7ccf4a5c9736.png"
+                            src={harvestFindOne.images[0].path}
                             alt="Bình và chai thủy tinh đầy sữa tươi trên bàn gỗ ngoài trời, nền cây xanh tự nhiên mờ"
                             id="main-image"
                         />
-                        <button className="arrow-btn right" aria-label="Ảnh tiếp theo" id="btn-next" type="button">❯
-                        </button>
+
                     </div>
 
                     <div className="thumbnails" role="list" aria-label="Ảnh thu nhỏ sản phẩm">
-                        <div role="listitem" className="thumbnail active" tabIndex="0" aria-current="true">
-                            <img
-                                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/58ae4b8b-2b45-486f-8a32-9ab3e847da86.png"
-                                alt="Bình và chai thủy tinh đầy sữa tươi trên bàn gỗ ngoài trời, nền cây xanh tự nhiên mờ"
-                            />
-                        </div>
-                        <div role="listitem" className="thumbnail" tabIndex="0">
-                            <img
-                                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/fbd16d01-dca0-47b8-8a31-07fd66beceaf.png"
-                                alt="Cây cỏ phủ lớp sương sớm dưới ánh nắng mặt trời lúc bình minh"
-                            />
-                        </div>
-                        <div role="listitem" className="thumbnail" tabIndex="0">
-                            <img
-                                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/0ed752b4-2ea2-4b0b-909f-7f72a0863698.png"
-                                alt="Cô gái đứng giữa cánh đồng lúa mì vàng rực trong nắng chiều, mặt ánh lên niềm vui"
-                            />
-                        </div>
+                        {harvestFindOne.images.map((image, i) => (
+                            <div role="listitem" className="thumbnail active" tabIndex="0" aria-current="true">
+                                <img
+                                    src={image.path}
+                                    alt="Bình và chai thủy tinh đầy sữa tươi trên bàn gỗ ngoài trời, nền cây xanh tự nhiên mờ"
+                                />
+                            </div>
+                        ))}
+
+
                     </div>
                 </div>
                 <div className="details">

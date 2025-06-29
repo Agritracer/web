@@ -1,21 +1,7 @@
 /* Reset and base */
-* {
-    box-sizing: border-box;
-}
-body {
-    margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #ffffff;
-    color: #202024;
-    line-height: 1.5;
-    font-size: 14px;
-}
-/* Container */
-.container {
-    max-width: 900px;
-    margin: 2rem auto 4rem;
-    padding: 0 1.5rem;
-}
+
+
+/* Container *
 /* Title Section */
 .title-section {
     margin-bottom: 2rem;
@@ -160,4 +146,8 @@ body {
     fill: none;
     stroke-linecap: round;
     stroke-linejoin: round;
+}
+.image-row{
+    display: flex;
+    gap: 16px;
 }

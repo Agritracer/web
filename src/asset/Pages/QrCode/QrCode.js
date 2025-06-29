@@ -1,7 +1,4 @@
-import {Column} from "primereact/column";
-import {DataTable} from "primereact/datatable";
 import {InputText} from "primereact/inputtext";
-import ImageComponent from "../../../components/Images/Image.jsx";
 import React, {useState} from "react";
 import ProductInfo from "./ProductInfo/ProductInfo";
 import HerdInfo from "./HerdInfo/HerdInfo";
@@ -12,15 +9,12 @@ export default function SizeDemo({idherd, herdname}) {
     const [input, setInput] = useState("");
     const [data, setData] = useState([]);
 
-   //  http://localhost:5000
-    const apiUrl = process.env.REACT_APP_API_URL;
-    console.log("API endpoint:", apiUrl);
-
     const searchQrCode = async (value) => {
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/qrcode/${value.input}` // Giả sử bạn muốn tìm kiếm theo mã QR
             );
             if (!response.ok) {
+                setData([])
                 throw new Error(`Server trả về lỗi: ${response.status}`);
             }
             const result = await response.json();
@@ -59,10 +53,10 @@ export default function SizeDemo({idherd, herdname}) {
         </div>
         <div className="card">
             {data.product ? (<>
-                    <ProductInfo product={data.product} productInfo={data.productInfo}/>
-                    <HerdInfo info={data.product}/>
-                    <CulivationLogs info={data?.product}/>
-                    <HarvestInfo info={data?.product}/>
+                    <ProductInfo product={data.product} productInfo={data.productInfo} harvestFindOne={data.harvestFindOne}/>
+                    <HerdInfo farm={data.farm} category={data.category} herd={data.herd}/>
+                    <CulivationLogs cultivationLogs={data.cultivationLogs}/>
+                    <HarvestInfo harvest={data.harvest}  harvestFindOne={data.harvestFindOne}/>
                 </>
             ) : (
                 <span>Không có dữ liệu.</span>

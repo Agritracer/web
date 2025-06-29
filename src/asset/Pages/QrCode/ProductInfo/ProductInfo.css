@@ -1,28 +1,4 @@
 /* Reset & base */
-* {
-    box-sizing: border-box;
-}
-body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    margin: 0;
-    padding: 24px;
-    background-color: #fff;
-    color: #222;
-    line-height: 1.5;
-}
-h2 {
-    font-weight: 700;
-    font-size: 1.25rem;
-    margin: 0 0 0.75rem 0;
-}
-p {
-    margin: 0 0 1rem 0;
-    font-size: 0.9rem;
-    color: #3c3c3c;
-}
-strong {
-    font-weight: 700;
-}
 
 /* Container */
 .product-detail {
