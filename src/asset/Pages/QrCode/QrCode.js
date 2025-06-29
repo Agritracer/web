@@ -39,7 +39,7 @@ export default function SizeDemo({idherd, herdname}) {
         if (type === "Success") {
             toast.current.show({
                 severity: "success",
-                summary: "Thành công",
+                summary: `truy xuất dữ liệu thành công đã kiểm tra mã txt_hash:${data.tx_hashes}`,
                 life: 3000,
             });
         } else if (type === "Error") {
@@ -61,7 +61,7 @@ export default function SizeDemo({idherd, herdname}) {
         console.log("Kết quả từ QRScanner:", dataQrcode);
         setOpenQr(false);
         setInput(dataQrcode);
-        await searchQrCode({input:dataQrcode});
+        await searchQrCode({input: dataQrcode});
     };
 
     const closeQRCode = () => {
@@ -70,7 +70,7 @@ export default function SizeDemo({idherd, herdname}) {
     const qrScanner = isOpenQr ? <QRScanner onScan={handleScanResult}/> : null;
 
     return (<div className={idherd ? "" : "div_main"}>
-        <Toast className="toast" ref={toast} />
+        <Toast className="toast" ref={toast}/>
         <Dialog
             header="Quét mã QRCode"
             style={{width: "50%"}}
@@ -107,7 +107,12 @@ export default function SizeDemo({idherd, herdname}) {
                 >
                     Quét QRCode
                 </button>
-
+                <button
+                    className="p-button p-component"
+                    onClick={() => window.location.href = `https://sepolia.etherscan.io/tx/${data.tx_hashes}`}
+                >
+                    Etherscan
+                </button>
             </div>
         </div>
         <div className="card">
