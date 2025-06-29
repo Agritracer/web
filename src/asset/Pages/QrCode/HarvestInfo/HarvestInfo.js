@@ -1,19 +1,23 @@
 import './HarvestInfo.css';
 
-export default function HarvestInfo({harvestInfo}) {
+export default function HarvestInfo({harvest, harvestFindOne}) {
+    const totalQuantity = harvest.reduce((sum, item) => sum + item.quantity, 0);
+
+    const date = new Date(harvestFindOne.date);
+
+    // Định dạng ngày tháng theo kiểu Việt Nam
+    const formattedDate = date.toLocaleDateString('vi-VN', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+    });
+
+
     return (
         <div>
             <main className="container" role="main" aria-label="Hồ sơ Thu hoạch sản phẩm">
                 <header>
-                    <div className="header-icon" aria-hidden="true" title="Icon hộp">
-                        <svg stroke="currentColor" fill="none" strokeWidth="2" viewBox="0 0 24 24"
-                             strokeLinejoin="round" strokeLinecap="round">
-                            <path
-                                d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/>
-                            <polyline points="3.27 6.96 12 12.01 20.73 6.96"/>
-                            <line x1="12" y1="22.08" x2="12" y2="12"/>
-                        </svg>
-                    </div>
+
                     <div className="header-text">
                         <h1>Hồ sơ Thu hoạch</h1>
                         <p>Hồ sơ sản xuất và chế biến từ đàn cừu này</p>
@@ -31,7 +35,7 @@ export default function HarvestInfo({harvestInfo}) {
                         </div>
                         <div className="stat-text">
                             <p className="stat-title">Tổng sản lượng</p>
-                            <p className="stat-value kg">1110 <span
+                            <p className="stat-value kg">{totalQuantity} <span
                                 style={{fontWeight: 600, fontSize: '1rem'}}>kg</span></p>
                             <p className="stat-subtext">Tất cả sản phẩm</p>
                         </div>
@@ -48,7 +52,7 @@ export default function HarvestInfo({harvestInfo}) {
                         </div>
                         <div className="stat-text">
                             <p className="stat-title">Loại sản phẩm</p>
-                            <p className="stat-value number">2</p>
+                            <p className="stat-value number">{harvest.length}</p>
                             <p className="stat-subtext">Sản phẩm khác nhau</p>
                         </div>
                     </article>
@@ -73,12 +77,12 @@ export default function HarvestInfo({harvestInfo}) {
                     <article className="harvest-card" tabIndex="0">
                         <div className="harvest-info">
                             <header className="harvest-header">
-                                <h2 className="harvest-title">Len thô</h2>
+                                <h2 className="harvest-title">{harvestFindOne.name}</h2>
                                 <div className="meta-item">
-                                    <span className="meta-label">5 tháng 3, 2024</span>
+                                    <span className="meta-label">{formattedDate}</span>
                                 </div>
                                 <div className="meta-item">
-                                    <span className="meta-label">660 kg</span>
+                                    <span className="meta-label">{harvestFindOne.quantity} kg</span>
                                 </div>
                                 <div className="meta-item">
                                     <span className="meta-label">1 hình ảnh</span>
@@ -87,7 +91,7 @@ export default function HarvestInfo({harvestInfo}) {
                             </header>
                             <div className="harvest-stats">
                                 <div className="harvest-stat kg">
-                                    <p className="value">660</p>
+                                    <p className="value">{harvestFindOne.quantity}</p>
                                     <p className="label">KG</p>
                                 </div>
                                 <div className="harvest-stat premium">
@@ -95,8 +99,8 @@ export default function HarvestInfo({harvestInfo}) {
                                     <p className="label">Cấp độ</p>
                                 </div>
                                 <div className="harvest-stat orange">
-                                    <p className="value">5</p>
-                                    <p className="label">Tháng 3</p>
+                                    <p className="value">{date.getDate()}</p>
+                                    <p className="label">{date.toLocaleDateString('vi-VN', { month: 'long' })}</p>
                                 </div>
                                 <div className="harvest-stat">
                                     <p className="value">1</p>
@@ -106,7 +110,7 @@ export default function HarvestInfo({harvestInfo}) {
                         </div>
                         <div className="harvest-image-container" aria-hidden="true">
                             <img
-                                src="https://storage.googleapis.com/workspace-0f70711f-8b4e-4d94-86f1-2a93ccde5887/image/af44d37f-d2ff-4857-b658-3171c2bd27f6.png"
+                                src={harvestFindOne.images[0].path}
                                 alt="Cánh đồng rộng mùa đông"
                                 onError={(e) => {
                                     e.target.style.backgroundColor = '#ddd';
