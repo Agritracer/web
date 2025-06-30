@@ -46,7 +46,7 @@ function YourComponent({ herdId, data, isUpdate, reloadData }) {
   const [farm, setfarm] = useState({});
   const [categories, setcategories] = useState({});
   var url = herdId
-    ? `https://agriculture-traceability.vercel.app/api/v1/herds/upload/${herdId}`
+    ? `http://localhost:5000/api/v1/herds/upload/${herdId}`
     : "";
   const [selectedCategories, setelectedCategories] = useState(null);
   const [selectedfarm, setSelectedfarm] = useState(null);

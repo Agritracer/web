@@ -68,7 +68,7 @@ function Harvest({ isherdharvest }) {
     } else {
       try {
         const response = await fetch(
-          `https://agriculture-traceability.vercel.app/api/v1/harvests?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
+          `http://localhost:5000/api/v1/harvests?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
             value
           )}`
         );
@@ -194,7 +194,7 @@ function Harvest({ isherdharvest }) {
   const [expandedRows, setExpandedRows] = useState(null);
   const rowExpansionTemplate = (data) => {
     product._id = data._id;
-    var url = `https://agriculture-traceability.vercel.app/api/v1/harvests/upload/${product._id}`;
+    var url = `http://localhost:5000/api/v1/harvests/upload/${product._id}`;
     return (
       <>
         <TabView>

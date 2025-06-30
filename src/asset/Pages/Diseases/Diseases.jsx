@@ -132,7 +132,7 @@ const emptyProduct = {
   const [expandedRows, setExpandedRows] = useState(null);
   const rowExpansionTemplate = (data) => {
     product._id = data._id;
-    var url = `https://agriculture-traceability.vercel.app/api/v1/diseases/upload/${product._id}`;
+    var url = `http://localhost:5000/api/v1/diseases/upload/${product._id}`;
     return (
       <>
         <TabView>
