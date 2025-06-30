@@ -18,7 +18,7 @@ function YourNewComponent({ reloadData, data, isUpdate }) {
   const [errors, setErrors] = useState({});
   const images = isUpdate ? data.images : [];
   const url = isUpdate
-    ? `${process.env.REACT_APP_API_URL}/api/v1/categories/upload/${data._id}`
+    ? `https://agriculture-traceability.vercel.app/api/v1/categories/upload/${data._id}`
     : "";
 
   const handleChange = (event) => {

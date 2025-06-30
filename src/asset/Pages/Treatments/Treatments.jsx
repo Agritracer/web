@@ -45,7 +45,7 @@ export default function SizeDemo({ idherd, herdname }) {
     if (idherd) {
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/treatments/herd/${idherd}?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
+          `https://agriculture-traceability.vercel.app/api/v1/treatments/herd/${idherd}?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
             value
           )}`
         );
@@ -62,7 +62,7 @@ export default function SizeDemo({ idherd, herdname }) {
     } else {
       try {
         const res = await fetch(
-          `${process.env.REACT_APP_API_URL}/api/v1/treatments?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
+          `https://agriculture-traceability.vercel.app/api/v1/treatments?limit=${currentLimit}&page=${currentPage}&searchQuery=${encodeURIComponent(
             value
           )}`
         );

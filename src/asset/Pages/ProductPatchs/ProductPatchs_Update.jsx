@@ -15,7 +15,6 @@ import {
 } from "../../service/productPatchs_data.js";
 import { AuthContext } from "../../service/user_service.js";
 const emptyProduct = {
-  UseID: JSON.parse(localStorage.getItem("user")),
   name: "",
   price: "",
   net_weight: "",
@@ -38,7 +37,6 @@ const currentunitOptions = [
   { label: "VND", value: "VND" },
 ];
 function YourComponent({ data, reloadData, isUpdate, isProProduct }) {
-   data.UseID= JSON.parse(localStorage.getItem("user"));
   const [product, setProduct] = useState(data || emptyProduct);
   const [errors, setErrors] = useState({});
   const [ProductInfos, setProductInfos] = useState({});

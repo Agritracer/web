@@ -6,12 +6,11 @@ import "./Home.css";
 const FarmProduct = ({ reloadData }) => {
   const [herds, setHerds] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [chartData, setChartData] = useState({});
 
   useEffect(() => {
     const fetchHerds = async () => {
       try {
-        const response = await axios.get(`${process.env.REACT_APP_API_URL}/api/v1/herds?limit=50`);
+        const response = await axios.get("https://agriculture-traceability.vercel.app/api/v1/herds?limit=50");
         setHerds(response.data.herds);
         setLoading(false);
       } catch (error) {
@@ -38,6 +37,7 @@ const FarmProduct = ({ reloadData }) => {
     }
   }, [herds, loading]);
 
+  const [chartData, setChartData] = useState({});
 
   const chartOptions = {
     plugins: {
@@ -55,7 +55,7 @@ const FarmProduct = ({ reloadData }) => {
           <p>Loading...</p>
         ) : (
           <>
-            <h5>Biểu đồ số lượng </h5>
+            <h5>Biểu đồ số lượng</h5>
             <div className="chart-container">
               <Chart
                 type="pie"

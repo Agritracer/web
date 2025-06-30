@@ -7,7 +7,8 @@ import { AuthContext } from "../../asset/service/user_service.js";
 import "./Image.css";
 import { ToastContainer } from "react-toastify";
 import { NotifiCreate } from "../../asset/Design/Observable/index.js";
-const ImageUploader = ({ uploadUrl, images, reloadData, hiden = false }) => {
+const ImageUploader = ({  uploadUrl, images, reloadData }) => {
+  
   const { token } = useContext(AuthContext);
   const [err, setError] = useState(null);
 
@@ -53,8 +54,8 @@ const ImageUploader = ({ uploadUrl, images, reloadData, hiden = false }) => {
 
   return (
     <div>
-      <ToastContainer />
-      {err && toast.error({ err })}
+      <ToastContainer/>
+      {err && toast.error({err})}
       <Galleria
         className="Image_animals"
         value={images}
@@ -69,7 +70,6 @@ const ImageUploader = ({ uploadUrl, images, reloadData, hiden = false }) => {
         thumbnail={thumbnailTemplate}
       />
       <form
-        hidden={hiden}
         className="input_file"
         encType="multipart/formdata"
         onSubmit={handleSubmit(upLoadImage)}

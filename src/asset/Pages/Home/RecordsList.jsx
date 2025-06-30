@@ -217,7 +217,7 @@ export default function SizeDemo({ herdId }) {
   const [expandedRows, setExpandedRows] = useState(null);
   const rowExpansionTemplate = (data) => {
     product._id = data._id;
-    var url = `${process.env.REACT_APP_API_URL}/api/v1/animals/upload/${product._id}`;
+    var url = `https://agriculture-traceability.vercel.app/api/v1/animals/upload/${product._id}`;
     return (
       <>
         <h3 style={{ color: "black" }}>Hình</h3>
