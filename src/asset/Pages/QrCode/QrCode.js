@@ -17,6 +17,10 @@ export default function SizeDemo({idherd, herdname}) {
     const [openEtherscan, setOpenEtherscan] = useState(false);
 
     const searchQrCode = async (value) => {
+        if (!input.length > 0) {
+            notifyScannerQrcode("Error");
+            return;
+        }
         try {
             const response = await fetch(`${process.env.REACT_APP_API_URL}/api/v1/qrcode/${value.input}` // Giả sử bạn muốn tìm kiếm theo mã QR
             );
@@ -49,7 +53,7 @@ export default function SizeDemo({idherd, herdname}) {
         } else if (type === "Error") {
             toast.current.show({
                 severity: "error",
-                summary: "Lỗi xảy ra",
+                summary: "Ô tìm kiếm trống",
                 life: 3000,
             });
         } else if (type === "Server Error") {
@@ -111,7 +115,7 @@ export default function SizeDemo({idherd, herdname}) {
                 >
                     Quét QRCode
                 </button>
-                    {openEtherscan &&
+                {openEtherscan &&
                     <button
 
                         className="p-button p-component"
